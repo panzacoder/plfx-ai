@@ -8,7 +8,7 @@ function ChatClient({ params: { assistantId } }) {
     const [question, setQuestion] = useState("");
     const [chat, setChat] = useState([]);
     const [thread, setThread] = useState(null);
-    const [setRun] = useState(null);
+    const [run, setRun] = useState(null);
     const [loading, setLoading] = useState(false);
     const chatRef = useRef(null);
     chatRef.current = chat;
