@@ -25,10 +25,12 @@ function ChatClient({ params: { assistantId } }) {
         if (getRun.status == "completed") {
             const messages = await openai.beta.threads.messages.list(threadId);
             setLoading((prev) => false);
-            setChat([
-                ...chatRef.current,
-                { isBot: true, msg: messages.data[0].content[0].text.value },
-            ]);
+            if (messages.data[0].content[0].type == "text") {
+                setChat([
+                    ...chatRef.current,
+                    { isBot: true, msg: messages.data[0].content[0].text.value },
+                ]);
+            }
         } else {
             console.log("waiting for response");
             setTimeout(() => getAnswer(threadId, runId), 200);
