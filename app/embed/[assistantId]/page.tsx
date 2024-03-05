@@ -36,29 +36,26 @@ function ChatClient({ params: { assistantId } }) {
             setTimeout(() => getAnswer(threadId, runId), 200);
         }
     };
+
     const askAssistant = async () => {
         let getQuestion = question;
         setQuestion("");
         let chatList = [...chatRef.current, { isBot: false, msg: getQuestion }];
         setLoading((prev) => true);
         setChat(chatList);
-        let getThread;
-        if (thread == null) {
-            getThread = await openai.beta.threads.create();
-            setThread(getThread);
-        } else {
-            getThread = thread;
+        if (!thread) {
+            openai.beta.threads.create().then(setThread);
         }
-        await openai.beta.threads.messages.create(getThread.id, {
+        await openai.beta.threads.messages.create(thread.id, {
             role: "user",
             content: getQuestion,
         });
 
-        const getRun = await openai.beta.threads.runs.create(getThread.id, {
+        const getRun = await openai.beta.threads.runs.create(thread.id, {
             assistant_id: assistantId,
         });
         setRun(getRun);
-        getAnswer(getThread.id, getRun.id);
+        getAnswer(thread.id, getRun.id);
     };
 
     return (
