@@ -1,4 +1,4 @@
-import { getAssistants } from "@/functions/openai/get-assistants";
+import { getAssistants } from "@/server/openai/assistant";
 import { NextResponse } from "next/server";
 
 export async function GET() {
