@@ -17,7 +17,7 @@ export function SavedThreads({ assistantId }) {
     const thread = await createThread()
     setThread(thread)
     setIsLoading(false)
-    router.push(`/embed/${assistantId}/${thread.id}`)
+    router.push(`/assistant/${assistantId}/${thread.id}`)
   }
 
   return (
@@ -25,7 +25,7 @@ export function SavedThreads({ assistantId }) {
       {isLoading ? (
         <>
           <Skeleton className="h-10 flex-1 rounded-lg" />
-          <Skeleton className="bg-primary h-10 w-20  rounded-lg" />
+          <Skeleton className="h-10 w-20 rounded-lg  bg-primary" />
         </>
       ) : (
         <>
@@ -36,7 +36,9 @@ export function SavedThreads({ assistantId }) {
             disabled={!thread}
             className="flex-1"
             variant="outline"
-            onClick={() => router.push(`/embed/${assistantId}/${thread.id}`)}
+            onClick={() =>
+              router.push(`/assistant/${assistantId}/${thread.id}`)
+            }
           >
             Resume previous thread
           </Button>

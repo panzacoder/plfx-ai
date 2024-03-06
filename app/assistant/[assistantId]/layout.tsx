@@ -12,7 +12,7 @@ export default async function AssistantLayout({
     <div className="flex h-screen w-screen flex-col gap-4 bg-background md:p-4">
       <div className={`flex justify-between rounded-xl bg-secondary p-4`}>
         <Link
-          href={`/embed/${assistantId}`}
+          href={`/assistant/${assistantId}`}
           className="flex items-center gap-2"
         >
           <Library />

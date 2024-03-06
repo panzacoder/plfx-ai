@@ -38,5 +38,5 @@ export async function addMessage(formData: FormData) {
     run = await client.beta.threads.runs.retrieve(threadId, run.id)
   }
 
-  revalidatePath(`embed/${assistantId}`)
+  revalidatePath(`assistant/${assistantId}`)
 }
