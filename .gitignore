@@ -1,2 +1,18 @@
 node_modules
 .next
+.env
+.env.*
+!.env.example
+
+# Build files
+build
+dist
+*.log
+
+# Misc
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea
+.vscode
