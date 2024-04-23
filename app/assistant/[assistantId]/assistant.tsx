@@ -1,56 +1,34 @@
 'use client'
 
-import { Message, useAssistant } from 'ai/react'
-
-const roleToColorMap: Record<Message['role'], string> = {
-  system: 'red',
-  user: 'black',
-  function: 'blue',
-  assistant: 'green',
-  data: 'orange',
-  tool: 'purple'
-}
+import { Message as MessageType, useAssistant } from 'ai/react'
+import { Message } from './message'
 
 export default function Chat({ assistantId }) {
   const { status, error, messages, input, submitMessage, handleInputChange } =
     useAssistant({ api: `/api/assistant-stream/${assistantId}` })
 
   return (
-    <div className="stretch mx-auto flex w-full max-w-md flex-col py-24">
+    <div className="stretch mx-auto flex w-full max-w-xl flex-col py-2">
       {error && <div className="text-red-500">{`${error}`}</div>}
-      {messages.map((m: Message) => (
-        <div
-          key={m.id}
-          className="whitespace-pre-wrap"
-          style={{ color: roleToColorMap[m.role] }}
-        >
-          <strong>{`${m.role}: `}</strong>
-          {m.role !== 'data' && m.content}
-          {m.role === 'data' && (
-            <>
-              {/* here you would provide a custom display for your app-specific data:*/}
-              {(m.data as any).description}
-              <br />
-              <pre className={'bg-gray-200'}>
-                {JSON.stringify(m.data, null, 2)}
-              </pre>
-            </>
-          )}
-          <br />
-          <br />
-        </div>
+      {messages.map((m: MessageType) => (
+        <>
+          <Message key={m.id} {...m} />
+        </>
       ))}
 
       {status === 'in_progress' && (
         <div className="mb-8 h-8 w-full max-w-md animate-pulse rounded-lg bg-gray-300 p-2 dark:bg-gray-600" />
       )}
 
-      <form onSubmit={submitMessage}>
+      <form
+        onSubmit={submitMessage}
+        className="fixed bottom-8 w-full max-w-md self-center rounded border border-gray-300 p-2 shadow-xl"
+      >
         <input
+          className="w-full"
           disabled={status !== 'awaiting_message'}
-          className="fixed bottom-0 mb-8 w-full max-w-md rounded border border-gray-300 p-2 shadow-xl"
           value={input}
-          placeholder="What is the temperature in the living room?"
+          placeholder="What kind of questions can I ask?"
           onChange={handleInputChange}
         />
       </form>
