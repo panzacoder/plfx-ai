@@ -10,7 +10,7 @@ export default function Chat({ assistantId }) {
 
   const pending = status === 'in_progress'
   return (
-    <div className="stretch mx-auto flex w-full flex-col gap-4 py-2">
+    <div className="mx-auto flex w-full flex-col gap-4 py-2">
       {error && <div className="text-red-500">{`${error}`}</div>}
       {messages.map((m: MessageType) => (
         <>
