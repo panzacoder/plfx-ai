@@ -4,7 +4,7 @@ import { Message as MessageType, useAssistant } from 'ai/react'
 import { Message } from './message'
 import { cn } from '@/lib/utils'
 
-export default function Chat({ assistantId }) {
+export default function Chat({ assistantId }: { assistantId: string }) {
   const { status, error, messages, input, submitMessage, handleInputChange } =
     useAssistant({ api: `/api/assistant-stream/${assistantId}` })
 

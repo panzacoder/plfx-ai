@@ -8,8 +8,8 @@ export default async function AccountPage() {
 
   return (
     <div className="grid h-screen w-screen place-items-center">
-      <img src={user.profileImage} className="h-24 w-24 rounded-full" />
-      {user.name}
+      <img src={user?.profileImage} className="h-24 w-24 rounded-full" />
+      {user?.name}
     </div>
   )
 }
