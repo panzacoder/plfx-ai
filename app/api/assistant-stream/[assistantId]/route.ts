@@ -31,7 +31,7 @@ export async function POST(
 
   return AssistantResponse(
     { threadId, messageId: createdMessage.id },
-    async ({ forwardStream, sendMessage, sendDataMessage }) => {
+    async ({ forwardStream }) => {
       // Run the assistant on the thread
       const runStream = openai.beta.threads.runs.stream(threadId, {
         assistant_id: params.assistantId
