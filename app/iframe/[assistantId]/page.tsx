@@ -9,7 +9,7 @@ export default function IFramePage({
         <iframe
           width="870px"
           height="532px"
-          src={`http://localhost:3000/assistant/${assistantId}`}
+          src={`${process.env.NEXT_PUBLIC_VERCEL_URL}/assistant/${assistantId}`}
         />
       </div>
     </div>

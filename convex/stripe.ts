@@ -26,7 +26,7 @@ export const pay = action({
       throw new Error('you must have a verified email to subscribe')
     }
 
-    const domain = process.env.HOSTING_URL ?? 'http://localhost:3000'
+    const domain = process.env.NEXT_PUBLIC_VERCEL_URL ?? 'http://localhost:3000'
     const stripe = new Stripe(process.env.STRIPE_KEY!, {
       apiVersion: API_VERSION
     })
