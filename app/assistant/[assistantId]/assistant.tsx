@@ -20,7 +20,7 @@ export default function Chat({ assistantId }: { assistantId: string }) {
       <div className="flex h-full justify-center">
         <form
           onSubmit={submitMessage}
-          className="bottom-4 w-full max-w-md shadow-xl self-end"
+          className="bottom-4 w-full max-w-md shadow-xl self-end pb-2.5"
         >
           <input
             className={cn(
